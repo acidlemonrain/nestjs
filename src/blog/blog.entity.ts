@@ -16,7 +16,7 @@ export class Blog extends BaseEntity {
 	//内容
 	@Column({
 		type: 'text',
-		charset: 'utf-8'
+		charset: 'utf8'
 	})
 	content: string;
 	//点赞数

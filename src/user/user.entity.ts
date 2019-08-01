@@ -37,7 +37,8 @@ export class User extends BaseEntity {
 	@Column({
 		type: 'varchar',
 		length: 15,
-		default: 'nick name'
+		default: 'nick name',
+		charset: 'utf8'
 	})
 	nickname: string;
 

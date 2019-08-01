@@ -11,7 +11,10 @@ export class Friend extends BaseEntity {
 
 	@Column() active: number;
 
-	@Column() content: string;
+	@Column({
+		charset: 'utf8'
+	})
+	content: string;
 	@Column({ default: false })
 	status: boolean;
 }

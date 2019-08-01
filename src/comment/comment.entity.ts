@@ -15,7 +15,10 @@ import { User } from '../user/user.entity';
 export class Comment extends BaseEntity {
 	@PrimaryGeneratedColumn() id: number;
 
-	@Column() content: string;
+	@Column({
+		charset: 'utf8'
+	})
+	content: string;
 
 	@Column() blog: number;
 
