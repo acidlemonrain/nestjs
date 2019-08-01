@@ -35,12 +35,17 @@ export class UserController {
 	//注册流程
 	@Post()
 	async makeUser(@Body() body: any) {
-		return await this.userdb.save({
+		const user = await this.userdb.save({
 			username: body.username,
 			password: body.password,
 			nickname: body.nickname,
 			gen: new Date()
 		});
+		if (user) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	//登录流程
 	@Post('login')
@@ -49,7 +54,7 @@ export class UserController {
 			where: { username: body.username },
 			relations: [ 'friend' ]
 		});
-		if (user.password == body.password) {
+		if (!!user.password && user.password == body.password) {
 			return user;
 		} else {
 			console.log('login fail');
