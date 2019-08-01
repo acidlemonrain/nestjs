@@ -15,12 +15,10 @@ import { User } from '../user/user.entity';
 export class Comment extends BaseEntity {
 	@PrimaryGeneratedColumn() id: number;
 
-	@Column() authorid: number;
-
 	@Column() content: string;
 
 	@Column() blog: number;
 
-	@ManyToOne((type) => User, (user) => user.photos)
+	@ManyToOne((type) => User)
 	user: User;
 }

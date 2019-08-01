@@ -28,7 +28,7 @@ import { ChatModule } from './chat/chat.module';
 			host: 'localhost',
 			port: 3306,
 			username: 'root',
-			password: 'root',
+			password: '`1234567890-=aA`',
 			database: 'chat',
 			entities: [ __dirname + '/**/*.entity{.ts,.js}' ],
 			synchronize: true

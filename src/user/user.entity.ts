@@ -1,4 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import {
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	BaseEntity,
+	OneToMany,
+	ManyToMany,
+	JoinTable,
+	CreateDateColumn
+} from 'typeorm';
 import { Comment } from '../comment/comment.entity';
 import { Blog } from '../blog/blog.entity';
 enum sexoptions {
@@ -44,12 +53,12 @@ export class User extends BaseEntity {
 	})
 	sex: sexoptions;
 
-	@Column('simple-array') pastnames: string[];
-
 	@ManyToMany((type) => User)
 	@JoinTable()
 	friend: User[];
 
 	@OneToMany((type) => Blog, (blog) => blog.author)
 	blogs: Blog[];
+
+	@Column() gen: Date;
 }

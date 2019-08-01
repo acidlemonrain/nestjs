@@ -6,6 +6,7 @@ import { MaxKey } from 'typeorm';
 import { User } from '../user/user.entity';
 import { UserRepository } from '../user/user.repository';
 import { toUnicode } from 'punycode';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Controller('friend')
 export class FriendController {
@@ -56,5 +57,12 @@ export class FriendController {
 	@Get('dismiss/:id')
 	async dismiss(@Param('id') id) {
 		return await this.fdb.delete(id);
+	}
+
+	//好友广场
+	@Get()
+	async plaza() {
+		const p = this.userdb.find();
+		return p;
 	}
 }

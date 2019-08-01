@@ -7,9 +7,6 @@ import {
 	OnGatewayInit
 } from '@nestjs/websockets';
 import { Logger } from '@nestjs/common';
-import { handleRetry } from '@nestjs/typeorm';
-import { Socket } from 'socket.io';
-import { log } from 'util';
 
 @WebSocketGateway()
 export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {

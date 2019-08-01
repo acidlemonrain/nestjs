@@ -38,7 +38,8 @@ export class UserController {
 		return await this.userdb.save({
 			username: body.username,
 			password: body.password,
-			nickname: body.nickname
+			nickname: body.nickname,
+			gen: new Date()
 		});
 	}
 	//登录流程
@@ -103,8 +104,15 @@ export class UserController {
 	//查看他人主页
 	@Get('userhome/:id')
 	async userhome(@Param('id') id) {
-		return await this.userdb.findOne(id, {
-			relations: [ 'blogs' ]
+		const p = await this.userdb.findOne(id, {
+			relations: [ 'blogs', 'friend' ]
 		});
+		console.log(p);
+		return p;
+	}
+	//修改 简介
+	@Post('prof')
+	async prof(@Param('id') id, @Body() body) {
+		return await this.userdb.save(body);
 	}
 }

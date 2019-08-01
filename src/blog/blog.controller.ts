@@ -20,18 +20,23 @@ export class BlogController {
 		const p1 = await this.userdb.findOne({
 			where: { userid: body.author }
 		});
-		this.blogdb.save({
-			user: body.author,
-			content: body.content,
-			author: p1,
-			gen: new Date()
-		});
-
-		return 1;
+		if (p1) {
+			this.blogdb.save({
+				content: body.content,
+				author: p1,
+				gen: new Date()
+			});
+			return 1;
+		} else {
+			console.log('没有登录的人想发布动态');
+			return 0;
+		}
 	}
 	//获取使用blog
 	@Get(':id')
 	async get(@Param('id') id) {
+		console.log(123);
+
 		return await this.blogdb.find({
 			order: { gen: 'DESC' },
 			skip: id * 5,
